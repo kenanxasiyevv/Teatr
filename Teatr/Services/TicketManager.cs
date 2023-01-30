@@ -9,6 +9,7 @@ namespace Teatr.Services
 
         private Ticket[] _tickets = new Ticket[100];
         private int _ticketCount;
+        internal int Price { get; set; }
 
         public void Add(Entity entity)
         {

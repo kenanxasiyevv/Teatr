@@ -22,7 +22,8 @@ namespace Teatr
                 Id = 1,
                 DateTime = "12:25",
                 Film = "Green Mile",
-                Hall = "Zal 1"
+                Hall = "Zal 1",
+                Price= "8 AZN"
             };
             var session2 = new Session
             {
@@ -209,7 +210,7 @@ namespace Teatr
                     {
                         for (int j = 0; j < 20; j++)
                         {
-                            Console.Write($"{place[i, j]}" + " ");
+                            Console.Write($"{place[i, j]}" + "");
                         }
                     }
                     Console.WriteLine();
