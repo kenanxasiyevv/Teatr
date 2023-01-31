@@ -23,7 +23,6 @@ namespace Teatr
                 DateTime = "12:25",
                 Film = "Green Mile",
                 Hall = "Zal 1",
-                Price= "8 AZN"
             };
             var session2 = new Session
             {
