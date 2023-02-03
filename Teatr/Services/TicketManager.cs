@@ -33,7 +33,6 @@ namespace Teatr.Services
         }
         public Entity Get(int id)
         {
-
             for (int i = 0; i < _tickets.Length; i++)
             {
                 if (_tickets[i] == null)
@@ -112,7 +111,6 @@ namespace Teatr.Services
                 Row = row,
                 Column = column
             };
-
             Console.WriteLine("Ticket bought");
 
         }

@@ -196,8 +196,9 @@ namespace Teatr
                 }
                 else if(command == "get ticket")
                 {
-                    Console.WriteLine("Bilet Id-si daxil edin");
+                    Console.Write("Bilet Id-si daxil edin: ");
                     int  id = int.Parse(Console.ReadLine());
+
                    Console.WriteLine( ticketManager.Get(id));
                 }
             } while (!command.ToLower().Equals("quit"));
