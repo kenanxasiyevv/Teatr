@@ -11,6 +11,13 @@ namespace Teatr.Services
         private Ticket[] _tickets = new Ticket[100];
         private int _ticketCount;
         internal int Price { get; set; }
+        
+        private readonly SessionManager _sessionManager;
+        internal TicketManager(SessionManager sessionManager)
+        {
+            _sessionManager = sessionManager;
+
+        }
 
         public void Add(Entity entity)
         {
@@ -47,12 +54,6 @@ namespace Teatr.Services
             return null;
         }
 
-        private readonly SessionManager _sessionManager;
-        internal TicketManager(SessionManager sessionManager)
-        {
-            _sessionManager = sessionManager;
-
-        }
         public void BuyTicket()
         {
             Console.WriteLine("Seans:");
@@ -104,13 +105,14 @@ namespace Teatr.Services
 
             session.Seats[row - 1, column - 1] = State.Full;
 
-            var ticket = new Ticket
+            var ticket = new Ticket()
             {
-                Id = 1,
                 Session = session,
                 Row = row,
                 Column = column
             };
+
+            Add(ticket);
             Console.WriteLine("Ticket bought");
 
         }

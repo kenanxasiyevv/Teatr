@@ -216,6 +216,10 @@ namespace Teatr
 
                    Console.WriteLine( ticketManager.Get(id));
                 }
+                else if (command == "show tickets")
+                {
+                    ticketManager.Print();
+                }
 
             } while (!command.ToLower().Equals("quit"));
         }
