@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33205.214
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Teatr", "Teatr\Teatr.csproj", "{B16CB463-3C4F-478C-9A53-BEA25C67A5F0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Teatr", "Teatr\Teatr.csproj", "{B16CB463-3C4F-478C-9A53-BEA25C67A5F0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Core\Core.csproj", "{F2F13798-B005-493B-BBE3-83459729DFBC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core", "Core\Core.csproj", "{F2F13798-B005-493B-BBE3-83459729DFBC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
