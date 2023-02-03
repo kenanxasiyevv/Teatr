@@ -17,7 +17,11 @@ namespace Teatr
             var teatr = new Theater()
             {
                 Id = 1,
+<<<<<<< HEAD
                 Name = "CinemaPlus",
+=======
+                Name = "CinemaPlus"
+>>>>>>> c3cbc5e5ffdcf87619d96c0d2ed315e9956f5e09
             };
 
             var hall1 = new Hall
