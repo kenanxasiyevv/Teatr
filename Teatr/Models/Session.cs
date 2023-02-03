@@ -14,7 +14,7 @@ namespace Teatr.Models
 
         public override string ToString()
         {
-            return $"{" SessionID:",-4} {Id}\n{"Theater:",-4}{Teatr.Name}\n{"Film:",-4}\n{Film}{"Hall:"}\n{Hall} {"Price:",-4}{Price:C}\n\n";
+            return $"{"SessionID:",-4} {Id}\n{"Theater: ",-4}{Teatr.Name}\n{"Film:",-4}\n{Film}{"Hall:"}\n{Hall}{"Price:",-4}{Price:C}\n\n";
         }
     }
 }

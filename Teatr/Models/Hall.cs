@@ -7,10 +7,9 @@ namespace Teatr.Models
         internal int Row { get; set; }
         internal int Column { get; set; }
 
-
         public override string ToString()
         {
-            return $"{"ID:",-6} {Id}\n{"Zal adi:",-6} {Name}\n{"Zal olcusu:",-6}{Row} x {Column}\n{"Tutumu:", -6} {Row * Column} nefer\n";
+            return $"{"ID:",-4} {Id}\n{"Zal adi:",-6} {Name}\n{"Zal olcusu:",-6}{Row} x {Column}\n{"Tutumu:", -6} {Row * Column} nefer\n";
         }
 
     }

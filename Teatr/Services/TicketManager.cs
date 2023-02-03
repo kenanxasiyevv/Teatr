@@ -64,7 +64,7 @@ namespace Teatr.Services
 
             var session = (Session)_sessionManager.Get(sessionId);
 
-            if (sessionId == null || sessionId > 3)
+            if (sessionId == null || sessionId > 4)
             {
                 goto seans;
             }

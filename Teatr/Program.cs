@@ -7,23 +7,17 @@ namespace Teatr
     {
         static void Main(string[] args)
         {
-            var teater = new Theater();
             var hallManager = new HallManager();
             var filmManager = new FilmManager();
             var sessionManager = new SessionManager();
             var ticketManager = new TicketManager(sessionManager);
+
             string command = "";
 
             var teatr = new Theater()
             {
                 Id = 1,
-<<<<<<< HEAD
-                Name = "CinemaPlus"
-=======
-                DateTime = "12:25",
-                Film = "Green Mile",
-                Hall = "Zal 1",
->>>>>>> c2c4d73baf363afab1f8ca2afc75e6c8da0a9b95
+                Name = "CinemaPlus",
             };
 
             var hall1 = new Hall
@@ -33,6 +27,7 @@ namespace Teatr
                 Row = 6,
                 Column = 5
             };
+
             var hall2 = new Hall
             {
                 Id = 2,
@@ -40,6 +35,7 @@ namespace Teatr
                 Row = 8,
                 Column = 10
             };
+
             var hall3 = new Hall
             {
                 Id = 3,
@@ -58,6 +54,7 @@ namespace Teatr
                 Director = "Sam Raimi",
                 DateofFilm = "30 June 2004"
             };
+
             var film2 = new Film()
             {
                 Id = 2,
@@ -73,6 +70,7 @@ namespace Teatr
                 Director = "Ryaan Coogler",
                 DateofFilm = "15 September 2005"
             };
+
             var film4 = new Film()
             {
                 Id = 4,
@@ -85,7 +83,6 @@ namespace Teatr
             filmManager.Add(film3);
             filmManager.Add(film4);
 
-
             var session1 = new Session
             {
                 Id = 1,
@@ -96,6 +93,7 @@ namespace Teatr
                 Seats = new Enums.State[6, 5]
 
             };
+
             var session2 = new Session
             {
                 Id = 2,
@@ -105,6 +103,7 @@ namespace Teatr
                 Teatr = teatr,
                 Seats = new Enums.State[8, 10]
             };
+
             var session3 = new Session
             {
                 Id = 3,
@@ -114,6 +113,7 @@ namespace Teatr
                 Teatr = teatr,
                 Seats = new Enums.State[5, 10]
             };
+
             var session4 = new Session()
             {
                 Id = 4,
@@ -128,6 +128,7 @@ namespace Teatr
             sessionManager.Add(session2); ;
             sessionManager.Add(session3); ;
             sessionManager.Add(session4); ;
+
             do
             {
                 Console.Write("Enter Command: ");
@@ -137,6 +138,7 @@ namespace Teatr
                 {
                     hallManager.Print();
                 }
+
                 else if (command.ToLower().Equals("update hall"))
                 {
                     Console.Write("Id daxil edin: ");
@@ -152,6 +154,7 @@ namespace Teatr
                     };
                     hallManager.Update(id, hall4);
                 }
+
                 else if (command.ToLower().Equals("get hall"))
                 {
                     Console.Write("ID daxil edin: ");
@@ -164,10 +167,12 @@ namespace Teatr
                 {
                     sessionManager.Print();
                 }
+
                 else if (command.ToLower().Equals("show films"))
                 {
                     filmManager.Print();
                 }
+
                 else if (command.ToLower().Equals("delete film"))
                 {
                     Console.Write("ID daxil edin: ");
@@ -175,6 +180,7 @@ namespace Teatr
 
                     filmManager.Delete(id);
                 }
+
                 else if (command.ToLower().Equals("update film"))
                 {
                     Console.Write("ID daxil edin: ");
@@ -189,6 +195,7 @@ namespace Teatr
                     };
                     filmManager.Update(id, film5);
                 }
+
                 else if (command.ToLower().Equals("get film"))
                 {
                     Console.Write("Id daxil edin: ");
@@ -196,10 +203,12 @@ namespace Teatr
 
                     Console.WriteLine(filmManager.Get(id));
                 }
+
                 else if (command.ToLower().Equals("buy ticket"))
                 {
                     ticketManager.BuyTicket();
                 }
+
                 else if(command == "get ticket")
                 {
                     Console.Write("Bilet Id-si daxil edin: ");
@@ -207,6 +216,7 @@ namespace Teatr
 
                    Console.WriteLine( ticketManager.Get(id));
                 }
+
             } while (!command.ToLower().Equals("quit"));
         }
     }

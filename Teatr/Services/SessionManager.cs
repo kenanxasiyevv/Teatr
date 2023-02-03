@@ -1,6 +1,6 @@
 ﻿using Core.Models;
 using Core.Services.Contracts;
-using System.Runtime.CompilerServices;
+
 using Teatr.Models;
 
 namespace Teatr.Services
