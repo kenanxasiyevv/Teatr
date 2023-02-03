@@ -1,5 +1,5 @@
-﻿using Teatr.Services;
-using Teatr.Models;
+﻿using Teatr.Models;
+using Teatr.Services;
 
 namespace Teatr
 {
@@ -10,67 +10,36 @@ namespace Teatr
             var teater = new Theater();
             var hallManager = new HallManager();
             var filmManager = new FilmManager();
-            var ticketManager = new TicketManager();
             var sessionManager = new SessionManager();
+            var ticketManager = new TicketManager(sessionManager);
             string command = "";
 
-            teater.Name = "CinemaPlus";
-            Console.WriteLine(teater.Name);
-
-            var session1 = new Session
+            var teatr = new Theater()
             {
                 Id = 1,
-                DateTime = "12:25",
-                Film = "Green Mile",
-                Hall = "Zal 1",
-                Price= "8 AZN"
+                Name = "CinemaPlus"
             };
-            var session2 = new Session
-            {
-                Id = 2,
-                DateTime = "22:30",
-                Film = "Black Panther",
-                Hall = "Zal 3"
-            };
-            var session3 = new Session
-            {
-                Id = 3,
-                DateTime = "16:45",
-                Film = "Avatar",
-                Hall = "Zal 2"
-            };
-            var session4 = new Session()
-            {
-                Id = 4,
-                DateTime = "19:05",
-                Film = "Spiderman",
-                Hall = "Zal 4"
-            };
-            sessionManager.Add(session1); ;
-            sessionManager.Add(session2); ;
-            sessionManager.Add(session3); ;
-            sessionManager.Add(session4); ;
 
             var hall1 = new Hall
             {
                 Id = 1,
                 Name = "Zal 1",
-                raw = 10,
-                column = 20
+                Row = 6,
+                Column = 5
             };
             var hall2 = new Hall
             {
                 Id = 2,
                 Name = "Zal 2",
-                raw = 10,
-                column = 20
+                Row = 8,
+                Column = 10
             };
             var hall3 = new Hall
             {
                 Id = 3,
                 Name = "Zal 3",
-                raw = 10,
-                column = 20
+                Row = 5,
+                Column = 10
             };
             hallManager.Add(hall1);
             hallManager.Add(hall2);
@@ -109,12 +78,56 @@ namespace Teatr
             filmManager.Add(film2);
             filmManager.Add(film3);
             filmManager.Add(film4);
+
+
+            var session1 = new Session
+            {
+                Id = 1,
+                Film = film2,
+                Hall = hall1,
+                Price = 10,
+                Teatr = teatr,
+                Seats = new Enums.State[6, 5]
+
+            };
+            var session2 = new Session
+            {
+                Id = 2,
+                Film = film1,
+                Hall = hall2,
+                Price = 15,
+                Teatr = teatr,
+                Seats = new Enums.State[8, 10]
+            };
+            var session3 = new Session
+            {
+                Id = 3,
+                Film = film3,
+                Hall = hall3,
+                Price = 13,
+                Teatr = teatr,
+                Seats = new Enums.State[5, 10]
+            };
+            var session4 = new Session()
+            {
+                Id = 4,
+                Film = film1,
+                Hall = hall3,
+                Price = 14,
+                Teatr = teatr,
+                Seats = new Enums.State[5, 10]
+
+            };
+            sessionManager.Add(session1); ;
+            sessionManager.Add(session2); ;
+            sessionManager.Add(session3); ;
+            sessionManager.Add(session4); ;
             do
             {
                 Console.Write("Enter Command: ");
                 command = Console.ReadLine();
 
-                if (command.ToLower().Equals("print hall"))
+                if (command.ToLower().Equals("print halls"))
                 {
                     hallManager.Print();
                 }
@@ -128,8 +141,8 @@ namespace Teatr
                     {
                         Id = 4,
                         Name = "Zal 4",
-                        raw = 10,
-                        column = 20
+                        Row = 10,
+                        Column = 20
                     };
                     hallManager.Update(id, hall4);
                 }
@@ -138,7 +151,7 @@ namespace Teatr
                     Console.Write("ID daxil edin: ");
                     var id = int.Parse(Console.ReadLine());
 
-                    hallManager.Get(id);
+                    Console.WriteLine(hallManager.Get(id));
                 }
 
                 else if (command.ToLower().Equals("show session"))
@@ -175,50 +188,17 @@ namespace Teatr
                     Console.Write("Id daxil edin: ");
                     int id = int.Parse(Console.ReadLine());
 
-                    filmManager.Get(id);
+                    Console.WriteLine(filmManager.Get(id));
                 }
-                else if (command.ToLower().Equals("add ticket"))
+                else if (command.ToLower().Equals("buy ticket"))
                 {
-                    var ticket = new Ticket();
-                    sessionManager.Print();
-                    Console.Write("Hansi id-li seansi almaq isteyirsiniz: ");
-                    int id = int.Parse(Console.ReadLine());
-                    sessionManager.Get(id);
-
-                    string[,] place = new string[10, 20];
-                    ticket.Id = 1;
-                    ticket.Price = 9;
-
-                    for (int i = 0; i < 10; i++)
-                    {
-                        for (int j = 0; j < 20; j++)
-                        {
-                            place[i, j] = "Empty";
-                            Console.Write($"{place[i, j]}" + " ");
-
-                        }
-                    }
-                    Console.WriteLine();
-
-                    Console.Write("Hansi sirada oturmaq isteyirsiniz: ");
-                    int row = int.Parse(Console.ReadLine());
-                    Console.Write("Hansi yerde oturmaq isteyirsiniz: ");
-                    int column = int.Parse(Console.ReadLine());
-                    place[row - 1, column - 1] = "Full";
-
-                    for (int i = 0; i < 10; i++)
-                    {
-                        for (int j = 0; j < 20; j++)
-                        {
-                            Console.Write($"{place[i, j]}" + "");
-                        }
-                    }
-                    Console.WriteLine();
-
-                    ticketManager.Add(ticket);
-                    ticketManager.Get(1);
-                    Console.WriteLine("Bilet Ugurla Alindi!!");
-
+                    ticketManager.BuyTicket();
+                }
+                else if(command == "get ticket")
+                {
+                    Console.WriteLine("Bilet Id-si daxil edin");
+                    int  id = int.Parse(Console.ReadLine());
+                   Console.WriteLine( ticketManager.Get(id));
                 }
             } while (!command.ToLower().Equals("quit"));
         }

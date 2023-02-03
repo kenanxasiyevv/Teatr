@@ -9,7 +9,7 @@ namespace Teatr.Models
 
         public override string ToString()
         {
-            return $"{Id} Filmin adi:{Name}\nFilmin Rejissoru:{Director}\nFilmin cixma tarixi:{DateofFilm}\n\n";
+            return $"{"Id:", -2} {Id}\n{"Filmin adi:", -6} {Name}\n{"Filmin Rejissoru:",-6} {Director}\n{"Filmin cixma tarixi:",-6}{DateofFilm}\n\n";
         }
     }
 }

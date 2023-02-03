@@ -1,10 +1,11 @@
 ﻿using Core.Models;
 using Core.Services.Contracts;
+using Teatr.Enums;
 using Teatr.Models;
 
 namespace Teatr.Services
 {
-    internal class TicketManager:IPrintService
+    public class TicketManager : IPrintService
     {
 
         private Ticket[] _tickets = new Ticket[100];
@@ -20,9 +21,6 @@ namespace Teatr.Services
             _tickets[_ticketCount++] = (Ticket)entity;
         }
 
-
-
-
         public void Print()
         {
             foreach (var item in _tickets)
@@ -33,7 +31,6 @@ namespace Teatr.Services
                 Console.WriteLine(item.ToString());
             }
         }
-
         public Entity Get(int id)
         {
 
@@ -44,12 +41,80 @@ namespace Teatr.Services
 
                 if (id == _tickets[i].Id)
                 {
-                    Console.WriteLine(_tickets[i]);
                     return _tickets[i];
                 }
             }
             Console.WriteLine("Not Found!!");
             return null;
+        }
+
+        private readonly SessionManager _sessionManager;
+        internal TicketManager(SessionManager sessionManager)
+        {
+            _sessionManager = sessionManager;
+
+        }
+        public void BuyTicket()
+        {
+            Console.WriteLine("Seans:");
+            _sessionManager.Print();
+
+        seans:
+            Console.Write("Session id:");
+            var sessionId = int.Parse(Console.ReadLine());
+
+            var session = (Session)_sessionManager.Get(sessionId);
+
+            if (sessionId == null || sessionId > 3)
+            {
+                goto seans;
+            }
+            Console.WriteLine(session);
+
+            _sessionManager.PrintSessionSeats(session);
+
+        row:
+            Console.Write("Row:");
+            var row = int.Parse(Console.ReadLine());
+
+
+            if (!(row >= 1 && row <= session.Seats.GetLength(0)))
+            {
+                Console.WriteLine("Row is not correct!");
+
+                goto row;
+            }
+
+        column:
+            Console.Write("Column:");
+            var column = int.Parse(Console.ReadLine());
+
+            if (!(column >= 1 && column <= session.Seats.GetLength(1)))
+            {
+                Console.WriteLine("Column is not correct!");
+
+                goto column;
+            }
+
+            if (session.Seats[row - 1, column - 1] == State.Full)
+            {
+                Console.WriteLine("This seat is not empty!");
+
+                goto row;
+            }
+
+            session.Seats[row - 1, column - 1] = State.Full;
+
+            var ticket = new Ticket
+            {
+                Id = 1,
+                Session = session,
+                Row = row,
+                Column = column
+            };
+
+            Console.WriteLine("Ticket bought");
+
         }
     }
 }

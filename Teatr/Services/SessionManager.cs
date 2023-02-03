@@ -1,10 +1,11 @@
 ﻿using Core.Models;
 using Core.Services.Contracts;
+using System.Runtime.CompilerServices;
 using Teatr.Models;
 
 namespace Teatr.Services
 {
-    internal class SessionManager:IPrintService
+    internal class SessionManager : IPrintService
     {
         private Session[] _sessions = new Session[4];
         private int _sessionCount;
@@ -44,5 +45,29 @@ namespace Teatr.Services
                 Console.WriteLine(item);
             }
         }
+        public void PrintSessionSeats(Session session)
+        {
+            Console.Write("   ");
+
+            for (int i = 0; i < session.Seats.GetLength(1); i++)
+                Console.Write($"{i + 1,-3}");
+
+            Console.WriteLine();
+
+            for (int i = 0; i < session.Seats.GetLength(0); i++)
+            {
+                Console.Write($"{i + 1,-3}");
+
+                for (int j = 0; j < session.Seats.GetLength(1); j++)
+                {
+                    Console.Write($"{(int)session.Seats[i, j],-3}");
+                }
+
+                Console.WriteLine();
+            }
+        }
+
+       
+      
     }
 }

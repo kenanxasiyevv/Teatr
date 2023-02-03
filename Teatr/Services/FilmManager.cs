@@ -47,7 +47,6 @@ namespace Teatr.Services
 
                 if (id == _films[i].Id)
                 {
-                    Console.WriteLine(_films[i]);
                     return _films[i];
                 }
             }
